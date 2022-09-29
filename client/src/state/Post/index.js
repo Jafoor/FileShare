@@ -1,0 +1,1 @@
+export { default as NewPostReducer } from "./newPost";
