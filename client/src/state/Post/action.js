@@ -10,12 +10,26 @@ export const createPost = createAsyncThunk(
             const body = {
                 post
             };
-            console.log(post);
 
-            return await axios.post(url, post);
+            const response =  await axios.post(url, post);
+            return response.data;
             // return await publicPost("", body);
         }catch(err){
             return rejectWithValue(err);
         }
+    }
+);
+
+export const getPosts = createAsyncThunk(
+    "Posts/get",
+    async() => {
+        try{
+            const url = 'http://localhost:5000/posts';
+            const response = await axios.get(url);
+            return response.data;
+        }catch(err){
+            return err;
+        }
+        
     }
 )

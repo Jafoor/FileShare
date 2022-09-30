@@ -1,40 +1,5 @@
 import React from "react";
 
-// Example
-// const title = "Title of the page";
-// const description = "Description of the page";
-// const form = {
-//     action: "type of your form action",
-//     // Other necessary methods
-//   }
-// const inputs = [{
-//     lavel: "Input lavel",
-//     isRequired: true or false,
-//     props: {
-//       id: "give a unique id for every input",
-//       placeholder: "Input's Placeholder",
-//       type: "Type of your input",
-//       name: "Name field of your inputs",
-//       // other necessary props can be added
-//     },
-//   },];
-
-//   const button = {
-//     buttonName: "Name of the Button",
-//     props: {
-//       type: 'button'
-//     }
-//   };
-
-// // Render the form like
-// <Form
-//     title={title}
-//     description = {description}
-//     form={form}
-//     inputs={inputs}
-//     button={button}
-// />
-
 export default function CreateBlock({
   title,
   description,

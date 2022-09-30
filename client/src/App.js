@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 import { Home, NewPost } from './pages';
+import { getPosts } from './state/Post/action';
 class App extends Component {
   render() {
     return (
