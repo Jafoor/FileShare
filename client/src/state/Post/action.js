@@ -32,4 +32,18 @@ export const getPosts = createAsyncThunk(
         }
         
     }
-)
+);
+
+export const getPost = createAsyncThunk(
+    "Post/get",
+    async(id, { rejectWithValue }) => {
+        try{
+            const url = `http://localhost:5000/posts/${id}`;
+            const response = await axios.get(url);
+            return response.data;
+        }catch(err){
+            return rejectWithValue(err);
+        }
+        
+    }
+);

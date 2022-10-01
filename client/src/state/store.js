@@ -1,6 +1,6 @@
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { NewPostReducer, GetPostsReducer } from './Post';
+import { NewPostReducer, GetPostsReducer, GetPostReducer } from './Post';
 
 const middlewares = [];
 if (process.env.NODE_ENV === "development") {
@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === "development") {
 
 const rootReducer = combineReducers({
     newPost: NewPostReducer,
-    posts: GetPostsReducer
+    posts: GetPostsReducer,
+    post: GetPostReducer
 });
 
 export const store = configureStore({

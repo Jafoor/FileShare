@@ -1,14 +1,14 @@
-import React, { Component, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { Component } from 'react';
 import { Routes, Route } from "react-router-dom";
 import { Home, NewPost } from './pages';
-import { getPosts } from './state/Post/action';
+import PostDetails from './pages/PostDetails';
 class App extends Component {
   render() {
     return (
       <Routes>
          <Route path="/" element={<Home />} />
          <Route path="/newpost" element={<NewPost/>}/>
+         <Route path="posts/:id" exact element={<PostDetails/>}/>
       </Routes>
     );
   }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../state/Post/action";
 import Layout from "../Layout";
 import Post from "../Post";
+import Loader from "../../components/Loader";
 
 const Home = () => {
     const [currentId, setCurrentId] = useState(0);
@@ -14,8 +15,14 @@ const Home = () => {
     
     
     const { data, status } = useSelector((state) => state.posts);
-    console.log(data);
 
+
+    if(status === 'loading'){
+        <Layout>
+                <Loader/>
+        </Layout>
+    }
+    else{
     return(
         <Layout>
             <section className="text-gray-600 body-font">
@@ -30,6 +37,7 @@ const Home = () => {
             </section>
         </Layout>
     )
+                    }
 };
 
 export default Home;

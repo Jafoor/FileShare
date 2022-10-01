@@ -18,7 +18,7 @@ export const getPost = async (req, res) => {
     try {
         const { id } = req.params;
         console.log(id);
-        const post = await PostMessage.find(id);
+        const post = await PostMessage.find({_id:id});
         res.status(200).json(post);
     } catch(error) {
         res.status(404).json({ message: error.message });
