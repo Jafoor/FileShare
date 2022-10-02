@@ -3,6 +3,8 @@ import Layout from "../Layout";
 import FileBase64 from 'react-file-base64';
 import { useDispatch } from "react-redux";
 import { createPost } from "../../state/Post/action";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const NewPost = ({ }) => {
 
@@ -40,11 +42,15 @@ const NewPost = ({ }) => {
                         <label for="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Title</label>
                         <input name="title" type="text" id="base-input" value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                     </div>
+
+                    
+
                     <div className="mb-6">
                         <label for="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Message</label>
-                        <input name="message" type="text" id="large-input" value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                        <ReactQuill className="h-80 scroll-m-0" name="message" theme="snow" value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} />
+                        {/* <input name="message" type="text" id="large-input" value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })} className="block p-4 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/> */}
                     </div>
-                    <div className="mb-6">
+                    <div className="mb-6 mt-20">
                         <label for="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tags</label>
                         <input name="tags" type="text" id="base-input" value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value })} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                     </div>

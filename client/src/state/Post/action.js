@@ -20,6 +20,22 @@ export const createPost = createAsyncThunk(
     }
 );
 
+export const updatePost = createAsyncThunk(
+    "Post/update",
+    async( post, id, { rejectWithValue } ) => {
+        try{
+            const url = `http://localhost:5000/posts/${id}`;
+            const body = {
+                post
+            };
+            const response =  await axios.post(url, post);
+            return response.data;
+        }catch(err){
+            return rejectWithValue(err);
+        }
+    }
+);
+
 export const getPosts = createAsyncThunk(
     "Posts/get",
     async() => {
