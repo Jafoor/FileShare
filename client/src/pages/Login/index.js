@@ -1,8 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 
 const Login = () => {
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [err, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleChange = e => {
+    setInputs( prev => ({ ...prev, [e.target.name] : e.target.value }))
+  }
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try{
+      const res = await axios.post("http://localhost:5000/auth/login", { useCredentials: true }, inputs);
+      console.log(res);
+      navigate("/");
+    }catch(err){
+      console.log(err);
+      console.log(err.response.data);
+      setError(err.response.data);
+    }
+    
+  }
+
   return (
     <Layout>
     <section className="h-screen">
@@ -82,9 +111,11 @@ const Login = () => {
           <div className="mb-6">
             <input
               type="text"
+              name="email"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleFormControlInput2"
               placeholder="Email address"
+              onChange={handleChange}
             />
           </div>
 
@@ -92,9 +123,11 @@ const Login = () => {
           <div className="mb-6">
             <input
               type="password"
+              name="password"
               className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleFormControlInput2"
               placeholder="Password"
+              onChange={handleChange}
             />
           </div>
 
@@ -116,9 +149,11 @@ const Login = () => {
             <button
               type="button"
               className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+              onClick={handleSubmit}
             >
               Login
             </button>
+            {err && <p className='text-red-600 text-center p-6'>{err.message}</p>}
             <p className="text-sm font-semibold mt-2 pt-1 mb-0">
               Don't have an account?
               <Link
