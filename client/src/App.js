@@ -1,23 +1,65 @@
-import React, { Component } from 'react';
-import { Routes, Route } from "react-router-dom";
-import { Home, NewPost } from './pages';
-import Login from './pages/Login';
-import PostDetails from './pages/PostDetails';
-import Register from './pages/Register';
-import UpdatePost from './pages/UpdatePost';
-class App extends Component {
-  render() {
-    return (
-      <Routes>
-         <Route path="/" element={<Home />} />
-         <Route path="/signin" element={<Login />} />
-         <Route path="/signup" element={<Register />} />
-         <Route path="/newpost" element={<NewPost/>}/>
-         <Route path="posts/:id" exact element={<PostDetails/>}/>
-         <Route path="update/:id" exact element={<UpdatePost/>}/>
-      </Routes>
-    );
-  }
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Outlet,
+} from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Write from "./pages/Write";
+import Home from "./pages/Home";
+import Single from "./pages/Single";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import "./style.scss"
+
+const Layout = () => {
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/post/:id",
+        element: <Single />,
+      },
+      {
+        path: "/write",
+        element: <Write />,
+      },
+    ],
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+]);
+
+function App() {
+  return (
+    <div className="app">
+      <div className="container">
+        <RouterProvider router={router} />
+      </div>
+    </div>
+  );
 }
 
 export default App;

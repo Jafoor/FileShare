@@ -1,27 +1,32 @@
-import * as dotenv from 'dotenv'
 import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from 'cors';
+import authRoutes from "./routes/auth.js";
+import postRoutes from "./routes/posts.js";
 import cookieParser from "cookie-parser";
+import multer from "multer";
 
-
-import postRoutes from './routes/posts.js';
-import authRoutes from './routes/auth.js';
-dotenv.config();
 const app = express();
-app.use(cookieParser());
 
-
-app.use(bodyParser.json({ limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
-app.use(cors());
 app.use(express.json());
-app.use('/posts', postRoutes);
-app.use('/auth', authRoutes);
+app.use(cookieParser());
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "../client/public/upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  },
+});
 
-const CONNECTION_URL = process.env.CONNECTION_URL;
-const PORT = process.env.PORT || 5000;
-mongoose.connect(CONNECTION_URL)
-.then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
-.catch((err) => console.log(err.message));
+const upload = multer({ storage });
+
+app.post("/api/upload", upload.single("file"), function (req, res) {
+  const file = req.file;
+  res.status(200).json(file.filename);
+});
+
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+
+app.listen(8800, () => {
+  console.log("Connected!");
+});
