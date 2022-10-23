@@ -5,6 +5,17 @@ const profileSchema = new mongoose.Schema({
   user : {
     type: mongoose.Schema.Types.ObjectId, ref: 'User'
   },
+  
+  generalInfo: [
+    {
+        id : {
+          type: String, default: uuidv4()
+        },
+        fullName: String,
+        bio: String,
+        birthday: String
+      }
+  ],
   address: [
     {
         id : {
@@ -12,6 +23,15 @@ const profileSchema = new mongoose.Schema({
         },
         addressTitle: String,
         address: String
+      }
+  ],
+  profession: [
+    {
+        id : {
+          type: String, default: uuidv4()
+        },
+        institution: String,
+        position: String
       }
   ],
   email: [

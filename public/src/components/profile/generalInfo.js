@@ -4,7 +4,7 @@ import {
     FormGroup,
     FormLabel,
     FormControl,
-    Row,
+    Row
   } from "react-bootstrap";
 
   import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +16,7 @@ import {
 
 import React from 'react'
 
-const SocialMedia = ({inputFields, setInputFields}) => {
+const GeneralInfo = ({inputFields, setInputFields}) => {
 
   const handleChangeInput = (id, event) => {
     const newInputFields = inputFields.map(i => {
@@ -29,51 +29,61 @@ const SocialMedia = ({inputFields, setInputFields}) => {
     setInputFields(newInputFields);
   }
 
-  const handleAddFields = () => {
-    setInputFields([...inputFields, { id: uuidv4(),  socialwebsite: '', socialwebsitelink: '' }])
-  }
+//   const handleAddFields = () => {
+//     setInputFields([...inputFields, { id: uuidv4(),  fullName: '', bio: '', birthday: '' }])
+//   }
 
-  const handleRemoveFields = id => {
-    const values  = [...inputFields];
-    values.splice(values.findIndex(value => value.id === id), 1);
-    setInputFields(values);
-  }
+//   const handleRemoveFields = id => {
+//     const values  = [...inputFields];
+//     values.splice(values.findIndex(value => value.id === id), 1);
+//     setInputFields(values);
+//   }
 
 
   return (
 
     
     <div>
-        <h1 className="text-dark font-weight-bold py-4">Social Details</h1>
-        { inputFields.map((inputField) => (
-            
+        <h1 className="text-dark font-weight-bold py-4">General Information</h1>
+        { inputFields.map((inputField, index) => (
           <div key={inputField.id}> 
-        <Form as={Row} >
+        <Form as ={Row}>
           <Form.Group as={Col} sm={12} md={6}>
-            <Form.Label>Social Website</Form.Label>
+            <Form.Label>Full Name</Form.Label>
             <Form.Control
-              name="socialwebsite"
+              name="fullName"
               type="text"
-              placeholder="e.g Github"
+              placeholder="Abu Jafor Mohamamd Saleh"
               onChange={event => handleChangeInput(inputField.id, event)}
-              value={inputField.socialwebsite}
+              value={inputField.fullName}
               required
             />
           </Form.Group>
           <Form.Group as={Col} sm={12} md={6}>
-            <Form.Label>Link</Form.Label>
+            <Form.Label>Bio</Form.Label>
             <Form.Control
-              name="socialwebsitelink"
+              name="bio"
               type="text"
-              placeholder="e.g https://github.com/Jafoor"
+              placeholder="Hello.."
               onChange={event => handleChangeInput(inputField.id, event)}
-              value={inputField.socialwebsitelink}
+              value={inputField.bio}
+              required
+            />
+          </Form.Group>
+          <Form.Group as={Col} sm={12} md={6}>
+            <Form.Label>Date of Birth</Form.Label>
+            <Form.Control
+              name="birthday"
+              type="date"
+              placeholder=""
+              onChange={event => handleChangeInput(inputField.id, event)}
+              value={inputField.birthday}
               required
             />
           </Form.Group>
         </Form>
 
-        <div className="text-center">
+        {/* <div className="text-center">
         <IconButton disabled={inputFields.length === 1} onClick={() => handleRemoveFields(inputField.id)}>
         <RemoveIcon />
       </IconButton>
@@ -82,7 +92,7 @@ const SocialMedia = ({inputFields, setInputFields}) => {
       >
         <AddIcon />
       </IconButton>
-      </div>
+      </div> */}
 
         </div>
         ))}
@@ -90,4 +100,4 @@ const SocialMedia = ({inputFields, setInputFields}) => {
   )
 }
 
-export default SocialMedia;
+export default GeneralInfo;

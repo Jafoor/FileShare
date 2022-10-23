@@ -57,7 +57,7 @@ const PhoneNumber = ({inputFields, setInputFields}) => {
             />
           </Form.Group>
           <Form.Group as={Col} sm={12} md={6}>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>Mobile Number</Form.Label>
             <Form.Control
               name="number"
               type="text"

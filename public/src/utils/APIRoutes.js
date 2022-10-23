@@ -7,3 +7,5 @@ export const sendMessageRoute = `${host}/api/messages/addmsg`;
 export const recieveMessageRoute = `${host}/api/messages/getmsg`;
 export const setAvatarRoute = `${host}/api/auth/setavatar`;
 export const profileCreateRoute = `${host}/api/profile/create`;
+export const profileGetRoute = `${host}/api/profile/`;
+export const profileUpdateRoute = `${host}/api/profile/update`;

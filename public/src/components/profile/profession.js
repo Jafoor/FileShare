@@ -4,7 +4,7 @@ import {
     FormGroup,
     FormLabel,
     FormControl,
-    Row,
+    Row
   } from "react-bootstrap";
 
   import IconButton from '@material-ui/core/IconButton';
@@ -16,7 +16,7 @@ import {
 
 import React from 'react'
 
-const SocialMedia = ({inputFields, setInputFields}) => {
+const Profession = ({inputFields, setInputFields}) => {
 
   const handleChangeInput = (id, event) => {
     const newInputFields = inputFields.map(i => {
@@ -30,7 +30,7 @@ const SocialMedia = ({inputFields, setInputFields}) => {
   }
 
   const handleAddFields = () => {
-    setInputFields([...inputFields, { id: uuidv4(),  socialwebsite: '', socialwebsitelink: '' }])
+    setInputFields([...inputFields, { id: uuidv4(),  institution: '', position: '' }])
   }
 
   const handleRemoveFields = id => {
@@ -44,30 +44,29 @@ const SocialMedia = ({inputFields, setInputFields}) => {
 
     
     <div>
-        <h1 className="text-dark font-weight-bold py-4">Social Details</h1>
-        { inputFields.map((inputField) => (
-            
+        <h1 className="text-dark font-weight-bold py-4">Profession</h1>
+        { inputFields.map((inputField, index) => (
           <div key={inputField.id}> 
-        <Form as={Row} >
+        <Form as ={Row}>
           <Form.Group as={Col} sm={12} md={6}>
-            <Form.Label>Social Website</Form.Label>
+            <Form.Label>Institute</Form.Label>
             <Form.Control
-              name="socialwebsite"
+              name="institution"
               type="text"
-              placeholder="e.g Github"
+              placeholder="Work, Personal.."
               onChange={event => handleChangeInput(inputField.id, event)}
-              value={inputField.socialwebsite}
+              value={inputField.institution}
               required
             />
           </Form.Group>
           <Form.Group as={Col} sm={12} md={6}>
-            <Form.Label>Link</Form.Label>
+            <Form.Label>Position</Form.Label>
             <Form.Control
-              name="socialwebsitelink"
+              name="position"
               type="text"
-              placeholder="e.g https://github.com/Jafoor"
+              placeholder="abujafor.cse11@gmail.com"
               onChange={event => handleChangeInput(inputField.id, event)}
-              value={inputField.socialwebsitelink}
+              value={inputField.position}
               required
             />
           </Form.Group>
@@ -90,4 +89,4 @@ const SocialMedia = ({inputFields, setInputFields}) => {
   )
 }
 
-export default SocialMedia;
+export default Profession;

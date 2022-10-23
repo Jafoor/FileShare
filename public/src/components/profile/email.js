@@ -44,7 +44,7 @@ const Email = ({inputFields, setInputFields}) => {
 
     
     <div>
-        <h1 className="text-dark font-weight-bold py-4">Social Details</h1>
+        <h1 className="text-dark font-weight-bold py-4">Email Address</h1>
         { inputFields.map((inputField, index) => (
           <div key={inputField.id}> 
         <Form as ={Row}>
